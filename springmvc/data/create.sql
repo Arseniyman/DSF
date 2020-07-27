@@ -1,3 +1,4 @@
+CREATE DATABASE IF NOT EXISTS sandbox;
 USE sandbox;
 CREATE TABLE IF NOT EXISTS employee
 (
