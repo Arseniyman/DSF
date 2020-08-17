@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>
+					id
+				</th>
+				<th>
+					Name
+				</th>
+				<th>
+					Age
+				</th>
+				<th>
+					<a href="employee/create">Create</a>
+				</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="em, iterStat : ${employees}">
+				<td th:text="${em.id}"></td>
+				<td th:text="${em.name}"></td>
+				<td th:text="${em.age}"></td>
+				<td><a th:href="@{|/employee/details/${em.id}|}">Details</a></td>
+				<td>
+					<form action="#" th:action="@{/employee/delete}" method="get">
+						<input name="id" th:value="${em.id}" type="hidden">
+						<input type="submit" value="Delete">
+					</form>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

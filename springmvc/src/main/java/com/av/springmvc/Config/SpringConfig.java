@@ -5,6 +5,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -46,5 +50,31 @@ public class SpringConfig implements WebMvcConfigurer {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
         registry.viewResolver(resolver);
+    }
+    
+    @Bean
+    public StringHttpMessageConverter stringHttpMessageConverter() {
+    	return new StringHttpMessageConverter();
+    }
+    
+    @Bean
+    public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
+    	return new MappingJackson2HttpMessageConverter();
+    }
+    
+    @Bean
+    public DriverManagerDataSource dataSource() {
+    	DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    	dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+    	dataSource.setUrl("jdbc:mysql://localhost:3376/sandbox?user=root&password=root&serverTimezone=Europe/Moscow");
+    	dataSource.setUsername("root");
+    	dataSource.setPassword("root");
+    	
+    	return dataSource;
+    }
+    
+    @Bean
+    public JdbcTemplate jdbcTemplate(DriverManagerDataSource dataSource) {
+    	return new JdbcTemplate(dataSource);
     }
 }
