@@ -42,7 +42,7 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("employee/create")
-	public String createEmployee(@ModelAttribute Employee employee, Model model) {
+	public String createEmployee(@ModelAttribute Employee employee) {
 		
 		dao.insert(employee);
 		return "redirect:/";
@@ -55,7 +55,6 @@ public class EmployeeController {
 		model.addAttribute("employee", employee);
 		return "employee/details";
 	}
-	
 	
 	@PostMapping("/employee/update")
 	public String updateEmployee(@ModelAttribute Employee employee) {
