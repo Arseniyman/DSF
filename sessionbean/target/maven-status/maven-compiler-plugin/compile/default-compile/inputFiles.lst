@@ -1,5 +1,5 @@
-/home/arseniy/Documents/javaproj/DSF/DSF/sessionbean/sessionbean/src/main/java/com/av/sessionbean/Models/User.java
-/home/arseniy/Documents/javaproj/DSF/DSF/sessionbean/sessionbean/src/main/java/com/av/sessionbean/Dao/Dao.java
-/home/arseniy/Documents/javaproj/DSF/DSF/sessionbean/sessionbean/src/main/java/com/av/sessionbean/Dao/JdbcUserDao.java
-/home/arseniy/Documents/javaproj/DSF/DSF/sessionbean/sessionbean/src/main/java/com/av/sessionbean/Controllers/UserController.java
-/home/arseniy/Documents/javaproj/DSF/DSF/sessionbean/sessionbean/src/main/java/com/av/sessionbean/Exceptions/DaoException.java
+/home/arseniy/Documents/javaproj/DSF/DSF/sessionbean/src/main/java/com/av/sessionbean/Dao/Dao.java
+/home/arseniy/Documents/javaproj/DSF/DSF/sessionbean/src/main/java/com/av/sessionbean/Models/User.java
+/home/arseniy/Documents/javaproj/DSF/DSF/sessionbean/src/main/java/com/av/sessionbean/Controllers/UserController.java
+/home/arseniy/Documents/javaproj/DSF/DSF/sessionbean/src/main/java/com/av/sessionbean/Exceptions/DaoException.java
+/home/arseniy/Documents/javaproj/DSF/DSF/sessionbean/src/main/java/com/av/sessionbean/Dao/JdbcUserDao.java

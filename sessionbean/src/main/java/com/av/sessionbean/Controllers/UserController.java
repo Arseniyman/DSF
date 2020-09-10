@@ -1,9 +1,10 @@
 package com.av.sessionbean.Controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.av.sessionbean.Dao.JdbcUserDao;
@@ -17,13 +18,14 @@ public class UserController implements Serializable {
 	
 	private static final long serialVersionUID = -1507373694984101022L;
 	
+	@EJB
 	private JdbcUserDao dao;
 	private User user = new User();
 	
-	@Inject
-	public void setDao(JdbcUserDao dao) {
-		this.dao = dao;
-	}
+	
+//	public void setDao(JdbcUserDao dao) {
+//		this.dao = dao;
+//	}
 	
 	public String createUser() {
 		try {
@@ -47,7 +49,10 @@ public class UserController implements Serializable {
 			System.out.println(e.getMessage());
 		}
 		
-		return null;
+		List<User> retUsers = new ArrayList<User>();
+		retUsers.add(new User("Nick", "Nikolson Bor", 32));
+		
+		return retUsers;
 	}
 	
 	
