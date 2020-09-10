@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+ 
+ <h:head>
+ 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+ </h:head>
+ 
+ <h:body class="col-md-12">
+   	<h2>Список пользователей</h2>
+
+    <h:form>
+   		<h:commandButton action="create" value="Создать пользователя" class="btn btn-primary mb-2" />
+   	</h:form>
+
+     	<h:form id="usersList">
+     	
+     	<table class="table">
+     		<thead>
+     			<tr>
+     				<th scope="col">Id</th>
+     				<th scope="col">Никнейм</th>
+     				<th scope="col">Имя</th>
+     				<th scope="col">Рейтинг</th>
+     				<th scope="col">Удалить</th>
+     				<th scope="col">Подробнее</th>
+     			</tr>
+     		</thead>
+     		
+     		<tbody>
+     			<ui:repeat var="c" value="#{userController.users}">
+     				<tr>
+   					<th scope="row"><h:outputText value="#{c.id}"/></th>
+   					<td>#{c.nickname}</td>
+     				<td>#{c.name}</td>
+     				<td>#{c.rating}</td>
+     				<td>
+     					<h:commandButton action="#{userController.deleteUser(c.id)}" value="Удалить" class="btn btn-danger" />
+     				</td>
+     				<td>
+     					<h:link outcome="edit.xhtml?id=#{c.id}" value="Подробнее" class="btn btn-info"/>
+     				</td>
+     			</tr>
+     			</ui:repeat>
+     		</tbody>
+     		
+     	</table>
+     	
+     </h:form>
+</h:body>
+
+</html>

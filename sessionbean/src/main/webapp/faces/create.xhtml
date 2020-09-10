@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+ 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+</h:head>
+
+<h:body class="col-md-12">
+	<h2>Создать пользователя</h2>
+	<h:form id="userForm" class="col-md-4">
+		<div class="form-group">
+			<label for="inpNick">Никнейм</label>
+			<h:inputText id="inpNick" class="form-control" value="#{userController.user.nickname}" />
+		</div>
+		
+		<div class="form-group">
+			<label for="inpName">Имя</label>
+			<h:inputText id="inpName" class="form-control" value="#{userController.user.name}" />
+		</div>
+		
+		<div class="form-group">
+			<label for="inpRat">Рейтинг</label>
+			<h:inputText id="inpRat" class="form-control" value="#{userController.user.rating}" />
+		</div>
+		
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="col-4">
+					<h:commandButton action="#{userController.createUser()}" value="Сохранить" class="btn btn-success"/>	
+				</div>
+		
+				<div class="col-4">
+					<h:link outcome="index.xhtml" value="Главная" class="btn btn-info"/>	
+				</div>
+			</div>
+		</div>
+
+	</h:form>
+	
+</h:body>
+   
+</html>
