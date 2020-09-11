@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
@@ -17,16 +19,25 @@ import com.av.sessionbean.Models.User;
 
 @Stateless
 @LocalBean
-public class JdbcUserDao implements Dao<User> {
+public class JdbcUserDao implements UserDao {
 
+	private Connection conn;
+	
+	@PostConstruct
+	public void initialize() throws DaoException {
+		try {
+			this.conn = getConn();
+		} catch (SQLException e) {
+			 throw new DaoException("Can`t get connection", e);
+		} 
+	}
+	
 	@Override
 	public boolean create(User t) throws DaoException {
 		
-		Connection conn = null;
 		PreparedStatement prepState = null;
 		
 		try {
-			conn = getConn();
 			String sql = "INSERT INTO user (nickname, name, rating) VALUES (?, ?, ?)";
 			prepState = conn.prepareStatement(sql);
 			prepState.setString(1, t.getNickname());
@@ -44,30 +55,23 @@ public class JdbcUserDao implements Dao<User> {
 			
 			try {
 				prepState.close();
+				prepState = null;
 			} catch (SQLException e) {
 				throw new DaoException("Can`t close prepared statement", e);
-			}
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				 throw new DaoException("Can`t close connection", e);
 			}
 		}
 		
 		return false;
 	}
 
-	//@SuppressWarnings("null")
 	@Override
 	public List<User> getAll() throws DaoException {
 		
 		List<User> users = new ArrayList<User>();
-		Connection conn = null;
 	    Statement state = null;
 		ResultSet resultSet = null;
 		 
 		try {
-			conn = getConn();
 			String sql = "SELECT * FROM user";
 			state = conn.createStatement();
 			resultSet = state.executeQuery(sql);
@@ -84,18 +88,15 @@ public class JdbcUserDao implements Dao<User> {
 		} finally {
 			try {
 				resultSet.close();
+				resultSet = null;
 			} catch (SQLException e) {
 				 throw new DaoException("Can`t close result set", e);
 			}
 			try {
 				state.close();
+				state = null;
 			} catch (SQLException e) {
 				 throw new DaoException("Can`t close statement", e);
-			}
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				 throw new DaoException("Can`t close connection", e);
 			}
 		}
 				
@@ -106,12 +107,10 @@ public class JdbcUserDao implements Dao<User> {
 	public User getById(long id) throws DaoException {
 		
 		User user = null;
-		Connection conn = null;
 	    PreparedStatement prepState = null;
 		ResultSet resultSet = null;
 		
 		try {
-			conn = getConn();
 			String sql = "SELECT * FROM user WHERE id = ?";
 			prepState = conn.prepareStatement(sql);
 			prepState.setLong(1, id);
@@ -127,18 +126,15 @@ public class JdbcUserDao implements Dao<User> {
 		} finally {
 			try {
 				resultSet.close();
+				resultSet = null;
 			} catch (SQLException e) {
 				 throw new DaoException("Can`t close result set", e);
 			}
 			try {
 				prepState.close();
+				prepState = null;
 			} catch (SQLException e) {
 				 throw new DaoException("Can`t close prepared statement", e);
-			}
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				 throw new DaoException("Can`t close connection", e);
 			}
 		}
 		
@@ -148,11 +144,9 @@ public class JdbcUserDao implements Dao<User> {
 	@Override
 	public boolean update(User t) throws DaoException {
 		
-		Connection conn = null;
 		PreparedStatement prepState = null;
 		
 		try {
-			conn = getConn();
 			String sql = "UPDATE user SET nickname = ?, name = ?, rating = ? WHERE id = ?";
 			prepState = conn.prepareStatement(sql);
 			prepState.setString(1, t.getNickname());
@@ -169,13 +163,9 @@ public class JdbcUserDao implements Dao<User> {
 		} finally {
 			try {
 				prepState.close();
+				prepState = null;
 			} catch (SQLException e) {
 				 throw new DaoException("Can`t close prepared statement", e);
-			}
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				 throw new DaoException("Can`t close connection", e);
 			}
 		}
 		
@@ -185,11 +175,9 @@ public class JdbcUserDao implements Dao<User> {
 	@Override
 	public boolean delete(long id) throws DaoException {
 		
-		Connection conn = null;
 		PreparedStatement prepState = null;
 		
 		try {
-			conn = getConn();
 			String sql = "DELETE FROM user WHERE id = ?";
 			prepState = conn.prepareStatement(sql);
 			prepState.setLong(1, id);
@@ -203,17 +191,23 @@ public class JdbcUserDao implements Dao<User> {
 		} finally {
 			try {
 				prepState.close();
+				prepState = null;
 			} catch (SQLException e) {
 				 throw new DaoException("Can`t close prepared statement", e);
-			}
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				 throw new DaoException("Can`t close connection", e);
 			}
 		}
 		
 		return false;
+	}
+	
+	@PreDestroy
+	public void cleanup() throws DaoException {
+		try {
+			conn.close();
+			conn = null;
+		} catch (SQLException e) {
+			 throw new DaoException("Can`t close connection", e);
+		}
 	}
 	
 	public Connection getConn() throws SQLException {

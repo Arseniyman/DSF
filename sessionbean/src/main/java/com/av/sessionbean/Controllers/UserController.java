@@ -23,10 +23,6 @@ public class UserController implements Serializable {
 	private User user = new User();
 	
 	
-//	public void setDao(JdbcUserDao dao) {
-//		this.dao = dao;
-//	}
-	
 	public String createUser() {
 		try {
 			dao.create(user);
