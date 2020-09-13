@@ -212,7 +212,7 @@ public class JdbcUserDao implements UserDao {
 	
 	public Connection getConn() throws SQLException {
 		
-		String url = "jdbc:mysql://localhost:3376/sandbox?useSSL=false&user=root&password=root&serverTimezone=Europe/Moscow";
+		String url = "jdbc:mysql://mysql/sandbox?useSSL=false&user=root&password=root&serverTimezone=Europe/Moscow";
 		return DriverManager.getConnection(url);
 	}
 	
