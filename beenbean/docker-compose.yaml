@@ -1,0 +1,31 @@
+version: '3.2'
+
+services:
+ 
+  mysql:
+    container_name: mysql
+    build:
+      context: ./docker/mysql 
+    restart: always
+    environment:
+#     - MYSQL_DATABASE=sandbox
+     - MYSQL_USER=sysadm
+     - MYSQL_PASSWORD=horosh
+     - MYSQL_ROOT_PASSWORD=root
+     - TZ=Europe/Moscow
+    ports:
+     - 3376:3306
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    
+  payara:
+    container_name: payara
+    build:
+      context: .
+      dockerfile: ./docker/payara/Dockerfile
+    restart: always
+    ports:
+      - 8085:8080
+      - 4949:4848
+#    entrypoint: ["wait-for-it.sh", "-s" ,"-t", "20", "mysql:3376", "--"]
+#    command: ["./wait-for-it.sh", "-s", "-t", "20", "mysql:3376", "--"]
+#    command: ["echo", "----------MySQL is available now !----------"]

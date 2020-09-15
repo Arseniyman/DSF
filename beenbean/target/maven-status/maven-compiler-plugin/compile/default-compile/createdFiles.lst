@@ -1,0 +1,15 @@
+com/av/beenbean/util/PaginationHelper.class
+com/av/beenbean/CreatureFacade.class
+com/av/beenbean/CreatureController$CreatureControllerConverter.class
+com/av/beenbean/CreatureController$1.class
+com/av/beenbean/UserController$1.class
+com/av/beenbean/AbstractFacade.class
+com/av/beenbean/CreatureController.class
+com/av/beenbean/UserController.class
+com/av/beenbean/JAXRSConfiguration.class
+com/av/beenbean/util/JsfUtil.class
+com/av/beenbean/UserController$UserControllerConverter.class
+com/av/beenbean/UserFacade.class
+com/av/beenbean/models/User.class
+com/av/beenbean/models/Creature.class
+com/av/beenbean/resources/JavaEE8Resource.class
