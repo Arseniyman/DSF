@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.PostPersist;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -78,7 +78,12 @@ public class Boss implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
+    
+    @PostPersist
+    public void printPersistSmt() {
+        System.out.println("Boss model has been preserved");
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

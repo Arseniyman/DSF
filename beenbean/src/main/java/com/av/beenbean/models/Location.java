@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PostUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -78,6 +79,11 @@ public class Location implements Serializable {
         this.id = id;
     }
 
+    @PostUpdate
+    public void printUpdateSmt() {
+        System.out.println("Location model has been updated");
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

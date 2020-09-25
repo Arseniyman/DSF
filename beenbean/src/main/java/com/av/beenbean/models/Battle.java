@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.PostRemove;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -94,6 +95,11 @@ public class Battle implements Serializable {
         this.id = id;
     }
 
+    @PostRemove
+    public void printRemoveSmt() {
+        System.out.println("Battle model has been removed");
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
