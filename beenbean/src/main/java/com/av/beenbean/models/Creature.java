@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.av.beenbean.models;
 
 import java.io.Serializable;
@@ -121,7 +116,7 @@ public class Creature implements Serializable {
 
     @Override
     public String toString() {
-        return "com.av.beenbean.models.Creature[ id=" + id + " ]";
+        return "Creature[ id=" + id + " ]";
     }
     
 }

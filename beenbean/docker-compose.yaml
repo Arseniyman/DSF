@@ -26,6 +26,3 @@ services:
     ports:
       - 8085:8080
       - 4949:4848
-#    entrypoint: ["wait-for-it.sh", "-s" ,"-t", "20", "mysql:3376", "--"]
-#    command: ["./wait-for-it.sh", "-s", "-t", "20", "mysql:3376", "--"]
-#    command: ["echo", "----------MySQL is available now !----------"]

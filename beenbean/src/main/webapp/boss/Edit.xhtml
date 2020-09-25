@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditBossTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditBossLabel_health}" for="health" />
+                    <h:inputText id="health" value="#{bossController.selected.health}" title="#{bundle.EditBossTitle_health}" />
+                    <h:outputLabel value="#{bundle.EditBossLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{bossController.selected.name}" title="#{bundle.EditBossTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditBossLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{bossController.selected.id}" title="#{bundle.EditBossTitle_id}" />
+                </h:panelGrid>
+                <h:commandLink action="#{bossController.update}" value="#{bundle.EditBossSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditBossViewLink}"/>
+                <br />
+                <h:commandLink action="#{bossController.prepareList}" value="#{bundle.EditBossShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditBossIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

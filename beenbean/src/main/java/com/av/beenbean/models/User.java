@@ -1,19 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.av.beenbean.models;
 
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -38,6 +37,14 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByRating", query = "SELECT u FROM User u WHERE u.rating = :rating")})
 public class User implements Serializable {
 
+    public List<Battle> getBattles() {
+        return battles;
+    }
+
+    public void setBattles(List<Battle> battles) {
+        this.battles = battles;
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,6 +63,11 @@ public class User implements Serializable {
     private BigInteger rating;
     @OneToMany(mappedBy = "userId")
     private Collection<Creature> creatureCollection;
+    @ManyToMany
+    @JoinTable(name = "user_battle",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "battle_id"))
+    private List<Battle> battles;
 
     public User() {
     }
@@ -132,7 +144,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "com.av.beenbean.models.User[ id=" + id + " ]";
+        return "User[ name=" + name + " ]";
     }
     
 }
