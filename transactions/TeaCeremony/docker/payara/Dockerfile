@@ -8,7 +8,7 @@ RUN chmod +rx ./scripts/entrypoint.sh
 
 COPY --chown=payara:payara ./docker/mysql-connector-java-8.0.21.jar ./appserver/bin
 
-COPY --chown=payara:payara ./target/beenbean-1.0-SNAPSHOT.war $DEPLOY_DIR
+COPY --chown=payara:payara ./target/TeaCeremony-1.war $DEPLOY_DIR
 
 # RUN mkdir -p ./appserver/mysql/bin
 
