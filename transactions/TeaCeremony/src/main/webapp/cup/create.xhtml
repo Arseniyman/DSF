@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Create cup</title>
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+    </h:head>
+    <h:body class="col-md-12">
+	<h2>Create cup</h2>
+	<h:form id="cupForm" class="col-md-4">
+		<div class="form-group">
+                    <label for="description">Description</label>
+                    <h:inputText id="description" class="form-control" value="#{cupController.cup.description}" />
+		</div>
+		
+		<div class="container">
+                    <div class="row justify-content-md-center">
+                        <div class="col-4">
+                            <h:commandButton action="#{cupController.createCup()}" value="Save" class="btn btn-success"/>	
+                        </div>
+
+                        <div class="col-4">
+                            <h:link outcome="toIndex" value="Main" class="btn btn-info"/>
+                        </div>
+                    </div>
+		</div>
+	</h:form>
+    </h:body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTeaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTeaLabel_yearOfCollection}" for="yearOfCollection" />
+                    <h:inputText id="yearOfCollection" value="#{teaController.selected.yearOfCollection}" title="#{bundle.EditTeaTitle_yearOfCollection}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTeaLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{teaController.selected.name}" title="#{bundle.EditTeaTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditTeaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{teaController.selected.id}" title="#{bundle.EditTeaTitle_id}" />
+                </h:panelGrid>
+                <h:commandLink action="#{teaController.update}" value="#{bundle.EditTeaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTeaViewLink}"/>
+                <br />
+                <h:commandLink action="#{teaController.prepareList}" value="#{bundle.EditTeaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTeaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

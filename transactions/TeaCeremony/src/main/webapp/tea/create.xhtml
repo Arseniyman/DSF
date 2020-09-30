@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Create tea</title>
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+    </h:head>
+    <h:body class="col-md-12">
+	<h2>Create tea</h2>
+	<h:form id="teaForm" class="col-md-4">
+		<div class="form-group">
+                    <label for="name">Name</label>
+                    <h:inputText id="name" class="form-control" value="#{teaController.tea.name}" />
+		</div>
+            
+                <div class="form-group">
+                    <label for="yearOfCollection">Year of collection</label>
+                    <h:inputText id="yearOfCollection" class="form-control" value="#{teaController.tea.yearOfCollection}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+		</div>
+		
+		<div class="container">
+                    <div class="row justify-content-md-center">
+                        <div class="col-4">
+                            <h:commandButton action="#{teaController.createTea()}" value="Save" class="btn btn-success"/>	
+                        </div>
+
+                        <div class="col-4">
+                            <h:link outcome="toIndex" value="Main" class="btn btn-info"/>	
+                        </div>
+                    </div>
+		</div>
+	</h:form>
+    </h:body>
+</html>

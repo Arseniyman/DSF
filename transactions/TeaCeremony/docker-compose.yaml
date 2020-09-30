@@ -1,0 +1,43 @@
+version: '3.2'
+
+services:
+ 
+  mysqlcup:
+    container_name: mysqlcup
+    build:
+      context: ./docker/mysqlcup 
+    restart: always
+    environment:
+     - MYSQL_DATABASE=cup
+     - MYSQL_USER=sysadm
+     - MYSQL_PASSWORD=horosh
+     - MYSQL_ROOT_PASSWORD=root
+     - TZ=Europe/Moscow
+    ports:
+     - 3376:3306
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    
+  mysqltea:
+    container_name: mysqltea
+    build:
+      context: ./docker/mysqltea
+    restart: always
+    environment:
+     - MYSQL_DATABASE=tea
+     - MYSQL_USER=sysadm
+     - MYSQL_PASSWORD=horosh
+     - MYSQL_ROOT_PASSWORD=root
+     - TZ=Europe/Moscow
+    ports:
+     - 3396:3306
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    
+#  payara:
+#    container_name: payara
+#    build:
+#      context: .
+#      dockerfile: ./docker/payara/Dockerfile
+#    restart: always
+#    ports:
+#      - 8085:8080
+#      - 4949:4848

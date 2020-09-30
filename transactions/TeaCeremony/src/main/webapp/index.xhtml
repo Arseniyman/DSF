@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+    </h:head>
+    <h:body class="col-md-12">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <h:form id="firstExper">
+                    <h:commandButton action="#{transactionController.successTrans()}" value="First Experiment" class="btn btn-info mb-2 mt-2 ml-2" />
+                </h:form>
+                <h:form id="secondExper">
+                    <h:commandButton action="#{transactionController.cupFailTeaReq()}" value="Second Experiment" class="btn btn-info mb-2 mt-2 ml-2" />
+                </h:form>
+                <h:form id="thirdExper">
+                    <h:commandButton action="#{transactionController.teaFailCupReq()}" value="Third Experiment" class="btn btn-info mb-2 mt-2 ml-2" />
+                </h:form>
+                <h:form id="forthExper">
+                    <h:commandButton action="#{transactionController.cupFailTeaNotSup()}" value="Forth Experiment" class="btn btn-info mb-2 mt-2 ml-2" />
+                </h:form>
+                <h:form id="fifthExper">
+                    <h:commandButton action="#{transactionController.teaFailCupNotSup()}" value="Fifth Experiment" class="btn btn-info mb-2 mt-2 ml-2" />
+                </h:form>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                    <h:link outcome="/cup/create" value="Create cup" class="btn btn-primary mb-2 mt-2"/>
+                    <h:form id="cupsList">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+     		
+                            <tbody>
+                                <ui:repeat var="c" value="#{cupController.cups}">
+                                <tr>
+                                    <th scope="row"><h:outputText value="#{c.id}"/></th>
+                                    <td>#{c.description}</td>
+                                    <td>
+                                        <h:commandButton action="#{cupController.deleteCup(c.id)}" value="Delete" class="btn btn-danger" />
+                                    </td>
+<!--                                    <td>
+                                        <h:link outcome="/cup/edit.xhtml?id=#{c.id}" value="More info" class="btn btn-info"/>
+                                    </td>-->
+                                </tr>
+                                </ui:repeat>
+                            </tbody>
+                        </table>
+                    </h:form>
+            
+                </div>
+        
+                <div class="col-md-6">
+                    <h:link outcome="/tea/create" value="Create tea" class="btn btn-primary mb-2 mt-2"/>
+                    <h:form id="teasList">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Year of collection</th>
+                                    <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+     		
+                            <tbody>
+                                <ui:repeat var="t" value="#{teaController.teas}">
+                                <tr>
+                                    <th scope="row"><h:outputText value="#{t.id}"/></th>
+                                    <td>#{t.name}</td>
+                                    <td>#{t.yearOfCollection}</td>
+                                    <td>
+                                        <h:commandButton action="#{teaController.deleteTea(t.id)}" value="Delete" class="btn btn-danger" />
+                                    </td>
+<!--                                    <td>
+                                        <h:link outcome="/tea/edit.xhtml?id=#{t.id}" value="More info" class="btn btn-info"/>
+                                    </td>-->
+                                </tr>
+                                </ui:repeat>
+                            </tbody>
+                        </table>
+                    </h:form>
+                    
+                </div>
+            </div>
+        </div>
+<!--        <br />
+        <h:link outcome="/cup/List" value="Show All Cup Items"/>
+        <br />
+        <h:link outcome="/tea/List" value="Show All Tea Items"/>-->
+    </h:body>
+</html>
